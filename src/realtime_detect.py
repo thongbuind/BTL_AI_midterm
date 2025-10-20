@@ -2,7 +2,6 @@ import cv2
 import json
 from pathlib import Path
 from ultralytics import YOLO
-from utils import draw_status_box
 
 import cv2
 
@@ -28,7 +27,7 @@ while True:
     if not ret:
         break
 
-    results = model(frame, stream=True, imgsz=image_size, conf=0.75)
+    results = model(frame, stream=True, imgsz=image_size, conf=0.7)
 
     detected_classes = set()
     for r in results:
@@ -37,8 +36,6 @@ while True:
             class_name = model.names[int(cls)]
             detected_classes.add(class_name)
         annotated_frame = r.plot()
-
-    annotated_frame = draw_status_box(annotated_frame, detected_classes)
 
     cv2.imshow("YOLOv8 Real-time Detection", annotated_frame)
 
