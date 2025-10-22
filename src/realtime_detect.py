@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 from ultralytics import YOLO
 
-import cv2
 current_file = Path(__file__).resolve()
 project_root = current_file.parent.parent
 model_file = project_root / "model" / "best.py"
