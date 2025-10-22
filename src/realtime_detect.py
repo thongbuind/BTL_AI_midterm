@@ -4,15 +4,19 @@ from pathlib import Path
 from ultralytics import YOLO
 
 import cv2
-
-model = YOLO("/Users/thongbui.nd/Documents/Thong Bui/BTL_AI/model/best.pt")
+current_file = Path(__file__).resolve()
+project_root = current_file.parent.parent
+model_file = project_root / "model" / "best.py"
+model = YOLO(model_file = project_root / "model" / "best.py")
 
 current_file = Path(__file__).resolve()
 project_root = current_file.parent.parent
 config_file = project_root / "config.json"
 src_dir = project_root / "src"
 
-cam = cv2.VideoCapture(0)
+url = "rtsp://admin:PBPBND@192.168.0.119:554/ch1/main"
+
+cam = cv2.VideoCapture(url)
 
 if not cam.isOpened():
     print("❌ Không mở được camera!")
